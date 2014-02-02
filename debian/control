@@ -1,0 +1,15 @@
+Source: timesup
+Section: utils
+Priority: extra
+Maintainer: Frederick Ollinger <follinge@gmail.com>
+Build-Depends: cli-common-dev (>= 0.7), debhelper (>= 7.0.50~), libmono-cil-dev, mono-devel (>= 2.6.7)
+Standards-Version: 3.9.4
+Homepage: http://fredollinger.github.com
+#Vcs-Git: git://git.debian.org/collab-maint/timesup.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/timesup.git;a=summary
+
+Package: timesup
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: A simple alarm in C#.
+ An alarm clock inspired by KAlarm. In C#.

@@ -1,0 +1,5 @@
+timesup (0.0.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- follinge <follinge@unknown>  Sat, 01 Feb 2014 18:49:13 -0800
