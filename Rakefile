@@ -20,7 +20,7 @@ CLEAN.include("*.deb", "*.changes", "*.dsc", "#{APP}_#{DEBIAN_VERSION}.debian.ta
 directory 'builddir'
 
 desc "build it"
-task :default => :ui do
+task :default => :deb do
 end
 
 desc "build it"
