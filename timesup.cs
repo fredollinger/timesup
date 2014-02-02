@@ -14,12 +14,13 @@ public class HelloWorld : Form
         Text = "Times Up! Timer Application";
 
         Button button = new Button();
-        button.Text = "Button";
+        button.Text = "Start Timer";
         button.Location = new Point(30, 70);
         button.Click += new EventHandler(OnClick);
         button.Parent = this;
 
         DateTimePicker dtp = new DateTimePicker();
+				dtp.Format = DateTimePickerFormat.Time;
         dtp.Parent = this;
 
         CenterToScreen();
