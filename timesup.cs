@@ -16,13 +16,23 @@ public class HelloWorld : Form
         Button button = new Button();
         button.Text = "Button";
         button.Location = new Point(30, 70);
-				button.Click += new EventHandler(OnClick);
+        button.Click += new EventHandler(OnClick);
         button.Parent = this;
+
+        DateTimePicker dtp = new DateTimePicker();
+        dtp.Parent = this;
 
         CenterToScreen();
     }
 
     void OnClick(object sender, EventArgs e) {
-        Console.Write("Clicked");
+				/*
+        FolderBrowserDialog dialog = new FolderBrowserDialog();
+        if (dialog.ShowDialog(this) == DialogResult.OK) {
+								Console.WriteLine("Clicked");
+        }
+				*/
+        //dtp.BringToFront();
+				Console.WriteLine("date");
     }
 }
