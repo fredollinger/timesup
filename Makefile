@@ -1,4 +1,4 @@
-APP=winforms
+APP=timesup
 win:
 	gmcs $(APP).cs -pkg:dotnet
 
