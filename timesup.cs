@@ -9,11 +9,13 @@ public class HelloWorld : Form
         Application.Run (new HelloWorld ());
     }
 
+    private Button button; 
+
     public HelloWorld ()
     {
         Text = "Times Up! Timer Application";
 
-        Button button = new Button();
+        button = new Button();
         button.Text = "Start Timer";
         button.Location = new Point(30, 70);
         button.Click += new EventHandler(OnClick);
@@ -21,19 +23,18 @@ public class HelloWorld : Form
 
         DateTimePicker dtp = new DateTimePicker();
 				dtp.Format = DateTimePickerFormat.Time;
+				dtp.ShowUpDown = true;
+				dtp.CustomFormat = "HH:mm";
+				dtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
         dtp.Parent = this;
 
         CenterToScreen();
     }
 
     void OnClick(object sender, EventArgs e) {
-				/*
-        FolderBrowserDialog dialog = new FolderBrowserDialog();
-        if (dialog.ShowDialog(this) == DialogResult.OK) {
-								Console.WriteLine("Clicked");
-        }
-				*/
-        //dtp.BringToFront();
+	    //MessageBox.Show("Your've selected the meeting date: " 
+			//										     + dtp.Value.Date);
 				Console.WriteLine("date");
+        button.Text = "Stop";
     }
 }
