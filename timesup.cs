@@ -2,16 +2,22 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-public class HelloWorld : Form
+public class TimesUp : Form
 {
+    public class Popup : Form {
+        public Popup (){
+            Text = "Times Up!";
+        }
+    }
+
     static public void Main ()
     {
-        Application.Run (new HelloWorld ());
+        Application.Run (new TimesUp ());
     }
 
     private Button button; 
 
-    public HelloWorld ()
+    public TimesUp ()
     {
         Text = "Times Up! Timer Application";
 
@@ -36,5 +42,7 @@ public class HelloWorld : Form
 			//										     + dtp.Value.Date);
 				Console.WriteLine("date");
         button.Text = "Stop";
+				Popup pop = new Popup();
+				pop.Show();
     }
 }
