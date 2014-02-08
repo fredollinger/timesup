@@ -18,11 +18,12 @@ public class TimesUp : Form
 
 		class TimerExampleState {
         public int counter = 0;
-        public System.Windows.Forms.Timer tmr;
+        public System.Threading.Timer tmr;
 		}
 
     private Button button; 
 		private Popup pop;
+	  private TimerExampleState s;
 
     public TimesUp ()
     {
@@ -51,19 +52,21 @@ public class TimesUp : Form
 			//										     + dtp.Value.Date);
 				Console.WriteLine("date");
         button.Text = "Stop";
-				TimerExampleState s = new TimerExampleState();
+				s = new TimerExampleState();
 				TimerCallback timerDelegate = new TimerCallback(CheckStatus);
 				System.Threading.Timer timer = new System.Threading.Timer(timerDelegate, s, 1000, 1000);
+				s.tmr = timer;
     }
 
 		 //static void CheckStatus(Object state) {
 		 void CheckStatus(Object state) {
 				TimerExampleState s = (TimerExampleState) state;
 				Console.WriteLine("Timer Action!!");
-        button.Text = "Start";
+        button.Text = "Start Timer";
 				pop.Show();
 				s.tmr.Dispose();
 				s.tmr = null;
+				pop.Refresh();
      }
 
 } // END public class TimesUp : Form
