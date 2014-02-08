@@ -22,6 +22,7 @@ public class TimesUp : Form
 		}
 
     private Button button; 
+		private Popup pop;
 
     public TimesUp ()
     {
@@ -40,9 +41,7 @@ public class TimesUp : Form
 				dtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
         dtp.Parent = this;
 
-				TimerExampleState s = new TimerExampleState();
-				TimerCallback timerDelegate = new TimerCallback(CheckStatus);
-				System.Threading.Timer timer = new System.Threading.Timer(timerDelegate, s, 1000, 1000);
+				pop = new Popup();
 
         CenterToScreen();
     }
@@ -52,14 +51,19 @@ public class TimesUp : Form
 			//										     + dtp.Value.Date);
 				Console.WriteLine("date");
         button.Text = "Stop";
-				Popup pop = new Popup();
-				pop.Show();
+				TimerExampleState s = new TimerExampleState();
+				TimerCallback timerDelegate = new TimerCallback(CheckStatus);
+				System.Threading.Timer timer = new System.Threading.Timer(timerDelegate, s, 1000, 1000);
     }
 
-		 static void CheckStatus(Object state) {
+		 //static void CheckStatus(Object state) {
+		 void CheckStatus(Object state) {
+				TimerExampleState s = (TimerExampleState) state;
 				Console.WriteLine("Timer Action!!");
-				Popup pop = new Popup();
+        button.Text = "Start";
 				pop.Show();
+				s.tmr.Dispose();
+				s.tmr = null;
      }
 
 } // END public class TimesUp : Form
