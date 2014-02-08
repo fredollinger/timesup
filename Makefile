@@ -1,4 +1,5 @@
 APP=timesup
+
 win:
 	gmcs $(APP).cs -pkg:dotnet
 

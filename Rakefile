@@ -15,13 +15,11 @@ BUILD='builddir'
 TARBALL="#{APP}_#{DEBIAN_VERSION}.orig.tar.xv"
 LINKPATH="#{APP}-#{WHOLE_VERSION}"
 
-CLEAN.include("*.deb", "*.changes", "*.dsc", "#{APP}_#{DEBIAN_VERSION}.debian.tar.gz", "src/obj-x86_64-linux-gnu", "builddir", "#{TARBALL}", "#{LINKPATH}")
+CLEAN.include("*.deb", "*.changes", "*.dsc", "#{APP}_#{DEBIAN_VERSION}.debian.tar.gz", "src/obj-x86_64-linux-gnu", "builddir", "#{TARBALL}", "#{LINKPATH}", "#{APP}.exe")
 
 directory 'builddir'
 
-desc "build it"
-task :default => :deb do
-end
+task :default => :ui 
 
 desc "build it"
 task :build => :ui do
@@ -29,7 +27,7 @@ end
 
 desc "build it"
 task :ui => 'builddir' do
-	sh "cd builddir && make .. 2>err"
+	sh "make 2>err"
 end
 
 desc "build debian package"

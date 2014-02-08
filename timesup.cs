@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 public class TimesUp : Form
@@ -14,6 +15,11 @@ public class TimesUp : Form
     {
         Application.Run (new TimesUp ());
     }
+
+		class TimerExampleState {
+        public int counter = 0;
+        public System.Windows.Forms.Timer tmr;
+		}
 
     private Button button; 
 
@@ -34,6 +40,10 @@ public class TimesUp : Form
 				dtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
         dtp.Parent = this;
 
+				TimerExampleState s = new TimerExampleState();
+				TimerCallback timerDelegate = new TimerCallback(CheckStatus);
+				System.Threading.Timer timer = new System.Threading.Timer(timerDelegate, s, 1000, 1000);
+
         CenterToScreen();
     }
 
@@ -45,4 +55,11 @@ public class TimesUp : Form
 				Popup pop = new Popup();
 				pop.Show();
     }
-}
+
+		 static void CheckStatus(Object state) {
+				Console.WriteLine("Timer Action!!");
+				Popup pop = new Popup();
+				pop.Show();
+     }
+
+} // END public class TimesUp : Form
