@@ -45,10 +45,13 @@ public class TimesUp : Form
     }
 
     void OnClick(object sender, EventArgs e) {
-				myTimer.Interval = 1000;
-				myTimer.Start();
-			  Console.WriteLine( "date: " + dtp.Value.Hour.ToString() );
+				//DateTime date1 = DateTime.Now;
+				DateTime chosenTime=dtp.Value;
+				TimeSpan setTime=chosenTime.Subtract(DateTime.Now);
         button.Text = "Stop";
+				myTimer.Interval = (int) setTime.TotalSeconds * 1000;
+			  Console.WriteLine( "date: " + myTimer.Interval.ToString() );
+				myTimer.Start();
     }
 
 		//static void CheckStatus(Object state) {
