@@ -1,6 +1,5 @@
 using System;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 
 public class TimesUp : Form
@@ -16,14 +15,9 @@ public class TimesUp : Form
         Application.Run (new TimesUp ());
     }
 
-		class TimerExampleState {
-        public int counter = 0;
-        public System.Threading.Timer tmr;
-		}
-
     private Button button; 
 		private Popup pop;
-	  private TimerExampleState s;
+		static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
 
     public TimesUp ()
     {
@@ -44,6 +38,13 @@ public class TimesUp : Form
 
 				pop = new Popup();
 
+        /* Adds the event and the event handler for the method that will 
+	  	  *           process the timer event to the timer. */
+				myTimer.Tick += new EventHandler(TimerEventProcessor);
+
+				myTimer.Interval = 5000;
+				myTimer.Start();
+
         CenterToScreen();
     }
 
@@ -52,21 +53,15 @@ public class TimesUp : Form
 			//										     + dtp.Value.Date);
 				Console.WriteLine("date");
         button.Text = "Stop";
-				s = new TimerExampleState();
-				TimerCallback timerDelegate = new TimerCallback(CheckStatus);
-				System.Threading.Timer timer = new System.Threading.Timer(timerDelegate, s, 1000, 1000);
-				s.tmr = timer;
     }
 
 		 //static void CheckStatus(Object state) {
-		 void CheckStatus(Object state) {
-				TimerExampleState s = (TimerExampleState) state;
+		 //void CheckStatus(Object state) {
+    private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
+			  myTimer.Stop();
 				Console.WriteLine("Timer Action!!");
         button.Text = "Start Timer";
 				pop.Show();
-				s.tmr.Dispose();
-				s.tmr = null;
-				pop.Refresh();
      }
 
 } // END public class TimesUp : Form
