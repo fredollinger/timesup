@@ -36,22 +36,19 @@ public class TimesUp : Form
 				dtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
         dtp.Parent = this;
 
-				pop = new Popup();
 
         /* Adds the event and the event handler for the method that will 
 	  	  *           process the timer event to the timer. */
 				myTimer.Tick += new EventHandler(TimerEventProcessor);
 
-				myTimer.Interval = 5000;
-				myTimer.Start();
 
         CenterToScreen();
     }
 
     void OnClick(object sender, EventArgs e) {
-	    //MessageBox.Show("Your've selected the meeting date: " 
-			//										     + dtp.Value.Date);
-				Console.WriteLine("date");
+				myTimer.Interval = 1000;
+				myTimer.Start();
+			  Console.WriteLine("date");
         button.Text = "Stop";
     }
 
@@ -61,6 +58,7 @@ public class TimesUp : Form
 			  myTimer.Stop();
 				Console.WriteLine("Timer Action!!");
         button.Text = "Start Timer";
+				pop = new Popup();
 				pop.Show();
      }
 
