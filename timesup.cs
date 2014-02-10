@@ -18,6 +18,7 @@ public class TimesUp : Form
     private Button button; 
 		private Popup pop;
 		static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
+    private DateTimePicker dtp = new DateTimePicker();
 
     public TimesUp ()
     {
@@ -29,13 +30,11 @@ public class TimesUp : Form
         button.Click += new EventHandler(OnClick);
         button.Parent = this;
 
-        DateTimePicker dtp = new DateTimePicker();
 				dtp.Format = DateTimePickerFormat.Time;
 				dtp.ShowUpDown = true;
 				dtp.CustomFormat = "HH:mm";
 				dtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
         dtp.Parent = this;
-
 
         /* Adds the event and the event handler for the method that will 
 	  	  *           process the timer event to the timer. */
@@ -48,12 +47,12 @@ public class TimesUp : Form
     void OnClick(object sender, EventArgs e) {
 				myTimer.Interval = 1000;
 				myTimer.Start();
-			  Console.WriteLine("date");
+			  Console.WriteLine( "date: " + dtp.Value.Hour.ToString() );
         button.Text = "Stop";
     }
 
-		 //static void CheckStatus(Object state) {
-		 //void CheckStatus(Object state) {
+		//static void CheckStatus(Object state) {
+		//void CheckStatus(Object state) {
     private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
 			  myTimer.Stop();
 				Console.WriteLine("Timer Action!!");
