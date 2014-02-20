@@ -16,24 +16,30 @@ public class TimesUp : Form
     }
 
     private Button button; 
-		private Popup pop;
-		static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
+	private Popup pop;
+	static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
     private DateTimePicker dtp = new DateTimePicker();
 
     public TimesUp ()
     {
         Text = "Times Up! Timer Application";
 
+        this.BackColor = System.Drawing.Color.Blue;
+        this.Padding = new System.Windows.Forms.Padding(20);
+
         button = new Button();
         button.Text = "Start Timer";
         button.Location = new Point(30, 70);
         button.Click += new EventHandler(OnClick);
+        button.Size = new Size(75,25);
         button.Parent = this;
 
-				dtp.Format = DateTimePickerFormat.Time;
-				dtp.ShowUpDown = true;
-				dtp.CustomFormat = "HH:mm";
-				dtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+        dtp.Format = DateTimePickerFormat.Time;
+		dtp.ShowUpDown = true;
+		dtp.CustomFormat = "HH:mm";
+		dtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+        dtp.Size = new Size(500,100);
+        dtp.Dock = DockStyle.Fill;
         dtp.Parent = this;
 
         /* Adds the event and the event handler for the method that will 
