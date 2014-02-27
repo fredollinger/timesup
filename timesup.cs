@@ -5,9 +5,16 @@ using System.Windows.Forms;
 public class TimesUp : Form
 {
     public class Popup : Form {
+        private Button button; 
         public Popup (){
             Text = "Times Up!";
+            button = new Button();
+            button.BackColor = System.Drawing.Color.Gray;
+            button.Text = "OK";
+            button.Location = new Point(30, 70);
+            button.Parent = this;
         }
+
     }
 
     static public void Main ()
