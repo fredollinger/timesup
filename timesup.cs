@@ -28,6 +28,7 @@ public class TimesUp : Form
 	private Popup pop;
 	static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
     private DateTimePicker dtp = new DateTimePicker();
+    private Label timeLeftLabel;
 
     public TimesUp ()
     {
@@ -51,6 +52,12 @@ public class TimesUp : Form
         dtp.Size = new Size(500,100);
         dtp.Dock = DockStyle.Fill;
         dtp.Parent = this;
+
+        timeLeftLabel = new Label();
+        timeLeftLabel.Location = new Point(50, 140);
+        timeLeftLabel.Parent = this;
+        timeLeftLabel.ForeColor = System.Drawing.Color.White;
+        timeLeftLabel.Text = "Time left: ??";
 
         StatusBar statusBar1 = new StatusBar();
         statusbar = new StatusBarPanel();
