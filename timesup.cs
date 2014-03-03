@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using TimerNS;
@@ -25,6 +26,7 @@ public class TimesUp : Form
 	static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
     private DateTimePicker dtp = new DateTimePicker();
     private Label timeLeftLabel;
+    List<TimerObj> timerList = new List<TimerObj>();
 
     public TimesUp ()
     {
