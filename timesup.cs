@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using TimerNS;
 
 public class TimesUp : Form
 {
@@ -15,11 +16,6 @@ public class TimesUp : Form
             button.Parent = this;
         }
 
-    }
-
-    static public void Main ()
-    {
-        Application.Run (new TimesUp ());
     }
 
     private Button button; 
@@ -100,19 +96,21 @@ public class TimesUp : Form
         button.Text = "Stop";
 		myTimer.Interval = (int) setTime.TotalSeconds * 1000;
 		myTimer.Start();
+
+        // FRED: NEED TO MOVE THIS TO ARRAY
+        TimerObj timerobj=new TimerObj();
     }
 
     private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
         resetTimer();
-        /*
-        myTimer.Stop();
-        started=false;
-	    Console.WriteLine("Timer Action!!");
-        button.Text = "Start Timer";
-        */
 
 		pop = new Popup();
 		pop.Show();
      }
+
+    static public void Main ()
+    {
+        Application.Run (new TimesUp ());
+    }
 
 } // END public class TimesUp : Form
