@@ -6,27 +6,13 @@ using TimerNS;
 
 public class TimesUp : Form
 {
-				/*
-    public class Popup : Form {
-        private Button button; 
-        public Popup (){
-            Text = "Times Up!";
-            button = new Button();
-            button.BackColor = System.Drawing.Color.Gray;
-            button.Text = "OK";
-            button.Location = new Point(30, 70);
-            button.Parent = this;
-        }
-    }
-		*/
-
     private Button button; 
     private bool started=false;
     private StatusBarPanel statusbar;
-	  //private Popup pop;
 	  static TimerObj myTimer = new TimerObj();
     private DateTimePicker dtp = new DateTimePicker();
     private Label timeLeftLabel;
+    private TextBox textMsg;
     List<TimerObj> timerList = new List<TimerObj>();
 
     public TimesUp ()
@@ -36,13 +22,19 @@ public class TimesUp : Form
         this.BackColor = System.Drawing.Color.Blue;
         this.Padding = new System.Windows.Forms.Padding(20);
 
+
         button = new Button();
         button.BackColor = System.Drawing.Color.Gray;
         button.Text = "Start Timer";
-        button.Location = new Point(30, 70);
+        button.Location = new Point(30, 150);
         button.Click += new EventHandler(OnClick);
         button.Size = new Size(75,25);
         button.Parent = this;
+
+				TextBox textMsg = new TextBox();
+        textMsg.Location = new Point(20, 70);
+				textMsg.Text = "Enter text here";
+        textMsg.Parent = this;
 
         dtp.Format = DateTimePickerFormat.Time;
 		dtp.ShowUpDown = true;

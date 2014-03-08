@@ -1,6 +1,6 @@
 APP=timesup
 
-win:
+win: clean
 	gmcs -pkg:dotnet *.cs
 
 install:
