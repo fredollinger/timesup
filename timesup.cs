@@ -6,6 +6,7 @@ using TimerNS;
 
 public class TimesUp : Form
 {
+				/*
     public class Popup : Form {
         private Button button; 
         public Popup (){
@@ -16,14 +17,14 @@ public class TimesUp : Form
             button.Location = new Point(30, 70);
             button.Parent = this;
         }
-
     }
+		*/
 
     private Button button; 
     private bool started=false;
     private StatusBarPanel statusbar;
-	private Popup pop;
-	static TimerObj myTimer = new TimerObj();
+	  //private Popup pop;
+	  static TimerObj myTimer = new TimerObj();
     private DateTimePicker dtp = new DateTimePicker();
     private Label timeLeftLabel;
     List<TimerObj> timerList = new List<TimerObj>();
@@ -99,9 +100,8 @@ public class TimesUp : Form
 
     private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
         resetTimer();
-
-		pop = new Popup();
-		pop.Show();
+		    //pop = new Popup();
+		    //pop.Show();
      }
 
     static public void Main ()
