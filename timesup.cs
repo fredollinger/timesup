@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using TimerNS;
 
 public class TimesUp : Form
 {
@@ -17,17 +19,14 @@ public class TimesUp : Form
 
     }
 
-    static public void Main ()
-    {
-        Application.Run (new TimesUp ());
-    }
-
     private Button button; 
     private bool started=false;
     private StatusBarPanel statusbar;
 	private Popup pop;
-	static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
+	static TimerObj myTimer = new TimerObj();
     private DateTimePicker dtp = new DateTimePicker();
+    private Label timeLeftLabel;
+    List<TimerObj> timerList = new List<TimerObj>();
 
     public TimesUp ()
     {
@@ -62,7 +61,7 @@ public class TimesUp : Form
 
         /* Adds the event and the event handler for the method that will 
 	  	  *           process the timer event to the timer. */
-		myTimer.Tick += new EventHandler(TimerEventProcessor);
+		    myTimer.Tick += new EventHandler(TimerEventProcessor);
 
 
         CenterToScreen();
@@ -93,19 +92,21 @@ public class TimesUp : Form
         button.Text = "Stop";
 		myTimer.Interval = (int) setTime.TotalSeconds * 1000;
 		myTimer.Start();
+
+        // FRED: NEED TO MOVE THIS TO ARRAY
+        //TimerObj timerobj=new TimerObj();
     }
 
     private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
         resetTimer();
-        /*
-        myTimer.Stop();
-        started=false;
-	    Console.WriteLine("Timer Action!!");
-        button.Text = "Start Timer";
-        */
 
 		pop = new Popup();
 		pop.Show();
      }
+
+    static public void Main ()
+    {
+        Application.Run (new TimesUp ());
+    }
 
 } // END public class TimesUp : Form

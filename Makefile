@@ -1,7 +1,7 @@
 APP=timesup
 
 win:
-	gmcs $(APP).cs -pkg:dotnet
+	gmcs -pkg:dotnet *.cs
 
 install:
 	mkdir -p $(DESTDIR)/usr/bin
