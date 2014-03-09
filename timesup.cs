@@ -37,9 +37,9 @@ public class TimesUp : Form
         textMsg.Parent = this;
 
         dtp.Format = DateTimePickerFormat.Time;
-		dtp.ShowUpDown = true;
-		dtp.CustomFormat = "HH:mm";
-		dtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+		    dtp.ShowUpDown = true;
+		    dtp.CustomFormat = "HH:mm";
+		    dtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
         dtp.Size = new Size(500,100);
         dtp.Dock = DockStyle.Fill;
         dtp.Parent = this;
@@ -55,7 +55,6 @@ public class TimesUp : Form
         /* Adds the event and the event handler for the method that will 
 	  	  *           process the timer event to the timer. */
 		    myTimer.Tick += new EventHandler(TimerEventProcessor);
-
 
         CenterToScreen();
     }
@@ -83,8 +82,9 @@ public class TimesUp : Form
         started=true;
         statusbar.Text = "Timer started.";
         button.Text = "Stop";
-		myTimer.Interval = (int) setTime.TotalSeconds * 1000;
-		myTimer.Start();
+		    myTimer.Interval = (int) setTime.TotalSeconds * 1000;
+				myTimer.setText(textMsg.Text);
+		    myTimer.Start();
 
         // FRED: NEED TO MOVE THIS TO ARRAY
         //TimerObj timerobj=new TimerObj();
@@ -92,8 +92,6 @@ public class TimesUp : Form
 
     private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
         resetTimer();
-		    //pop = new Popup();
-		    //pop.Show();
      }
 
     static public void Main ()
