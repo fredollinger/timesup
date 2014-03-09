@@ -31,7 +31,7 @@ public class TimesUp : Form
         button.Size = new Size(75,25);
         button.Parent = this;
 
-				TextBox textMsg = new TextBox();
+				textMsg = new TextBox();
         textMsg.Location = new Point(20, 70);
 				textMsg.Text = "Enter text here";
         textMsg.Parent = this;
@@ -72,9 +72,9 @@ public class TimesUp : Form
             return;
         }
 
-		DateTime chosenTime=dtp.Value;
-		TimeSpan setTime=chosenTime.Subtract(DateTime.Now);
-	    Console.WriteLine( "date: " + myTimer.Interval.ToString() );
+				DateTime chosenTime=dtp.Value;
+				TimeSpan setTime=chosenTime.Subtract(DateTime.Now);
+				Console.WriteLine( "date: " + myTimer.Interval.ToString() );
         if (setTime.TotalSeconds < 1){
             statusbar.Text = "Time Must be in Future";
             return;

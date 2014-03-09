@@ -10,6 +10,6 @@ install:
 clean:
 	rm -f $(APP).exe poptest.exe
 
-poptest: clean
+poptest: 
 	gmcs -pkg:dotnet poptest.cs timerobj.cs 
 	./poptest.exe
