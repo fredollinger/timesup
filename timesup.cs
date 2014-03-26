@@ -37,9 +37,9 @@ public class TimesUp : Form
         textMsg.Parent = this;
 
         dtp.Format = DateTimePickerFormat.Time;
-		    dtp.ShowUpDown = true;
-		    dtp.CustomFormat = "HH:mm";
-		    dtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+		//dtp.ShowUpDown = true;
+		// dtp.CustomFormat = "HH:mm";
+		//dtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
         dtp.Size = new Size(500,100);
         dtp.Dock = DockStyle.Fill;
         dtp.Parent = this;
