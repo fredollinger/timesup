@@ -9,7 +9,7 @@ public class TimesUp : Form
     private Button button; 
     private bool started=false;
     private StatusBarPanel statusbar;
-	  static TimerObj myTimer = new TimerObj();
+	  //static TimerObj myTimer = new TimerObj();
     private DateTimePicker dtp = new DateTimePicker();
     private Label timeLeftLabel;
     private TextBox textMsg;
@@ -51,6 +51,7 @@ public class TimesUp : Form
 				timerTree = new TreeView();
         timerTree.Location = new Point(20, y);
         timerTree.Size = new Size(250,100);
+        timerTree.Click += new EventHandler(TreeClicked);
 				timerTree.Parent = this;
 
         StatusBar statusBar1 = new StatusBar();
@@ -61,29 +62,31 @@ public class TimesUp : Form
         statusBar1.Panels.Add(statusbar);
         this.Controls.Add(statusBar1);
 
-        /* Adds the event and the event handler for the method that will 
-	  	  *           process the timer event to the timer. */
-		    myTimer.Tick += new EventHandler(TimerEventProcessor);
-
         CenterToScreen();
     }
 
     void resetTimer() {
         button.Text = "Start Timer";
-        myTimer.Stop();
+        //myTimer.Stop();
         started=false;
         return;
     }
 
+    void TreeClicked(object sender, EventArgs e) {
+				Console.WriteLine( " tree clicked");
+    }
+
     void OnClick(object sender, EventArgs e) {
+/*
         if (started){
             resetTimer(); 
             return;
         }
+*/
 
 				DateTime chosenTime=dtp.Value;
 				TimeSpan setTime=chosenTime.Subtract(DateTime.Now);
-				Console.WriteLine( "date: " + myTimer.Interval.ToString() );
+				//Console.WriteLine( "date: " + myTimer.Interval.ToString() );
         if (setTime.TotalSeconds < 1){
             statusbar.Text = "Time Must be in Future";
             return;
@@ -94,8 +97,16 @@ public class TimesUp : Form
         started=true;
         statusbar.Text = "Timer started.";
         button.Text = "Stop";
+
+	      TimerObj myTimer = new TimerObj();
+
+        /* Adds the event and the event handler for the method that will 
+	  	  *           process the timer event to the timer. */
+		    myTimer.Tick += new EventHandler(TimerEventProcessor);
+
 		    myTimer.Interval = (int) setTime.TotalSeconds * 1000;
 				myTimer.setText(textMsg.Text);
+				timerList.Add(myTimer);
 		    myTimer.Start();
 
         // FRED: NEED TO MOVE THIS TO ARRAY
