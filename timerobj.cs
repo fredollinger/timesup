@@ -38,6 +38,7 @@ public class TimerObj : System.Windows.Forms.Timer {
 		}
 
     private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
+        Stop();
 				showpopup();
     }
 

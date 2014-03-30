@@ -54,6 +54,10 @@ public class TimesUp : Form
         timerTree.Click += new EventHandler(TreeClicked);
 				timerTree.Parent = this;
 
+				ContextMenu mnu = new ContextMenu();
+				MenuItem mnuDelete = new MenuItem("Delete");
+				timerTree.ContextMenu = mnu;
+
         StatusBar statusBar1 = new StatusBar();
         statusbar = new StatusBarPanel();
         statusBar1.BackColor = System.Drawing.Color.Gray;
