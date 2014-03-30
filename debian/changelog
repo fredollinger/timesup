@@ -1,5 +1,13 @@
+timesup (0.0.2-1) unstable; urgency=low
+
+  * Red popup when times up.
+
+	* Fixed crash upon having time in the past. Now it's reported in status bar.
+
+ -- Frederick Ollinger <follinge@gmail.com>  Mon, 17 Mar 2014 10:49:12 -0700
+
 timesup (0.0.1-1) unstable; urgency=low
 
   * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
 
- -- follinge <follinge@unknown>  Sat, 01 Feb 2014 18:49:13 -0800
+ -- Frederick Ollinger <follinge@gmail.com>  Sat, 01 Feb 2014 18:49:13 -0800
