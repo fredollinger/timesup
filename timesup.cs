@@ -9,29 +9,30 @@ public class TimesUp : Form
     private Button button; 
     private bool started=false;
     private StatusBarPanel statusbar;
-	  //static TimerObj myTimer = new TimerObj();
+    //static TimerObj myTimer = new TimerObj();
     private DateTimePicker dtp = new DateTimePicker();
     private Label timeLeftLabel;
     private TextBox textMsg;
-	  private	TreeView timerTree;
+    private	TreeView timerTree;
     List<TimerObj> timerList = new List<TimerObj>();
+    private ContextMenu mnu;
 
     public TimesUp ()
     {
-				int x=90;
-				int y=50;
+		int x=90;
+		int y=50;
 
         Text = "Times Up! Timer Application";
 
         this.BackColor = System.Drawing.Color.Blue;
         this.Padding = new System.Windows.Forms.Padding(20);
 
-				textMsg = new TextBox();
+		textMsg = new TextBox();
         //textMsg.Location = new Point(20, 60);
         textMsg.Location = new Point(x, y);
-				textMsg.Text = "Enter text here";
+		textMsg.Text = "Enter text here";
         textMsg.Parent = this;
-				y=y+35;
+		y=y+35;
 
         button = new Button();
         button.BackColor = System.Drawing.Color.Gray;
@@ -46,17 +47,17 @@ public class TimesUp : Form
         //textMsg.Location = new Point(x, y);
         dtp.Dock = DockStyle.Fill;
         dtp.Parent = this;
-				y=y+30;
+		y=y+30;
 
-				timerTree = new TreeView();
+		timerTree = new TreeView();
         timerTree.Location = new Point(20, y);
         timerTree.Size = new Size(250,100);
         timerTree.Click += new EventHandler(TreeClicked);
-				timerTree.Parent = this;
+		timerTree.Parent = this;
 
-				ContextMenu mnu = new ContextMenu();
-				MenuItem mnuDelete = new MenuItem("Delete");
-				timerTree.ContextMenu = mnu;
+		mnu = new ContextMenu();
+		MenuItem mnuDelete = new MenuItem("Delete");
+		timerTree.ContextMenu = mnu;
 
         StatusBar statusBar1 = new StatusBar();
         statusbar = new StatusBarPanel();
@@ -77,7 +78,13 @@ public class TimesUp : Form
     }
 
     void TreeClicked(object sender, EventArgs e) {
-				Console.WriteLine( " tree clicked");
+        // mnu.Show(timerTree, new System.Drawing.Point(20, 20));
+        //if (e.Button == MouseButtons.Right) {
+            Console.WriteLine(" tree clicked");
+            Point pt = new System.Drawing.Point(20, 20);
+            //Point pt = timerTree.PointToScreen(e.Location);
+            mnu.Show(timerTree, pt);
+        //}
     }
 
     void OnClick(object sender, EventArgs e) {
@@ -88,9 +95,9 @@ public class TimesUp : Form
         }
 */
 
-				DateTime chosenTime=dtp.Value;
-				TimeSpan setTime=chosenTime.Subtract(DateTime.Now);
-				//Console.WriteLine( "date: " + myTimer.Interval.ToString() );
+        DateTime chosenTime=dtp.Value;
+        TimeSpan setTime=chosenTime.Subtract(DateTime.Now);
+        //Console.WriteLine( "date: " + myTimer.Interval.ToString() );
         if (setTime.TotalSeconds < 1){
             statusbar.Text = "Time Must be in Future";
             return;
