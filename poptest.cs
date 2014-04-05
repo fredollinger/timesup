@@ -11,7 +11,7 @@ public class Poptest : Form{
         String text = "Frederick";
 				this.Hide();
 				myTimer.setText(text);
-				myTimer.showpopup();
+				myTimer.showtimesup();
     }
 
     static public void Main ()

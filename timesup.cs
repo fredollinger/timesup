@@ -9,19 +9,14 @@ public class TimesUp : Form
     private Button button; 
     private Button deleteButton; 
 		ContextMenu mnu;
-    private bool started=false;
     private StatusBarPanel statusbar;
-    //static TimerObj myTimer = new TimerObj();
     private DateTimePicker dtp = new DateTimePicker();
     private Label timeLeftLabel;
     private TextBox textMsg;
     private	TreeView timerTree;
     List<TimerObj> timerList = new List<TimerObj>();
-<<<<<<< HEAD
 		private int currentIndex=-1;
-=======
-    private ContextMenu mnu;
->>>>>>> 1b7d7c36ac02ad32d65a49b9545f406b23d78e51
+    //private ContextMenu mnu;
 
     public TimesUp ()
     {
@@ -61,23 +56,13 @@ public class TimesUp : Form
         //textMsg.Location = new Point(x, y);
         dtp.Dock = DockStyle.Fill;
         dtp.Parent = this;
-		y=y+30;
+   		  y=y+30;
 
-		timerTree = new TreeView();
+		    timerTree = new TreeView();
         timerTree.Location = new Point(20, y);
         timerTree.Size = new Size(250,100);
         timerTree.Click += new EventHandler(TreeClicked);
-		timerTree.Parent = this;
-
-<<<<<<< HEAD
-				mnu = new ContextMenu();
-				MenuItem mnuDelete = new MenuItem("Delete");
-				timerTree.ContextMenu = mnu;
-=======
-		mnu = new ContextMenu();
-		MenuItem mnuDelete = new MenuItem("Delete");
-		timerTree.ContextMenu = mnu;
->>>>>>> 1b7d7c36ac02ad32d65a49b9545f406b23d78e51
+		    timerTree.Parent = this;
 
         StatusBar statusBar1 = new StatusBar();
         statusbar = new StatusBarPanel();
@@ -93,16 +78,14 @@ public class TimesUp : Form
     void resetTimer() {
         button.Text = "Start Timer";
         //myTimer.Stop();
-        started=false;
         return;
     }
 
     void TreeClicked(object sender, EventArgs e) {
-<<<<<<< HEAD
 				Console.WriteLine( " tree clicked");
 				TreeNode node = timerTree.SelectedNode;
 				currentIndex=node.Index;
-  			Console.WriteLine( currentIndex );
+  			//Console.WriteLine( currentIndex );
     }
 
     void DeleteClicked(object sender, EventArgs e) {
@@ -113,7 +96,6 @@ public class TimesUp : Form
 				timerTree.Nodes[currentIndex].Remove();
 				timerList[currentIndex].Stop();
 				timerList.RemoveAt(currentIndex);
-=======
         // mnu.Show(timerTree, new System.Drawing.Point(20, 20));
         //if (e.Button == MouseButtons.Right) {
             Console.WriteLine(" tree clicked");
@@ -121,19 +103,13 @@ public class TimesUp : Form
             //Point pt = timerTree.PointToScreen(e.Location);
             mnu.Show(timerTree, pt);
         //}
->>>>>>> 1b7d7c36ac02ad32d65a49b9545f406b23d78e51
     }
 
     void OnClick(object sender, EventArgs e) {
 
-<<<<<<< HEAD
-				DateTime chosenTime=dtp.Value;
-				TimeSpan setTime=chosenTime.Subtract(DateTime.Now);
-=======
         DateTime chosenTime=dtp.Value;
         TimeSpan setTime=chosenTime.Subtract(DateTime.Now);
-        //Console.WriteLine( "date: " + myTimer.Interval.ToString() );
->>>>>>> 1b7d7c36ac02ad32d65a49b9545f406b23d78e51
+
         if (setTime.TotalSeconds < 1){
             statusbar.Text = "Time Must be in Future";
             return;
@@ -142,7 +118,6 @@ public class TimesUp : Form
 
 				timerTree.Nodes.Add(textMsg.Text);
 
-        started=true;
         statusbar.Text = "Timer started.";
         button.Text = "Stop";
 
@@ -171,4 +146,4 @@ public class TimesUp : Form
     }
 
 } // END public class TimesUp : Form
-// Sun Mar 30 15:37:50 PDT 2014
+// Sat Apr  5 14:38:09 PDT 2014

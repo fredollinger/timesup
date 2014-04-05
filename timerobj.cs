@@ -5,28 +5,6 @@ using System.Windows.Forms;
 
 namespace TimerNS{
 public class TimerObj : System.Windows.Forms.Timer {
-    public class Popup : Form {
-        private Button button; 
-			  private Label label;
-        public Popup (String str){
-				    this.CenterToScreen();
-
-            this.BackColor = System.Drawing.Color.Red;
-            Text = str;
-
-						label = new Label();
-            label.ForeColor = System.Drawing.Color.White;
-						label.Text=str;
-            label.Location = new Point(30, 70);
-						label.Parent=this;
-
-            button = new Button();
-            button.BackColor = System.Drawing.Color.Gray;
-            button.Text = "OK";
-            button.Location = new Point(30, 150);
-            button.Parent = this;
-        }// public Popup()
-    } // public class Popup : Form {
 		private String text="Times Up";
 
     public TimerObj(){
@@ -39,12 +17,13 @@ public class TimerObj : System.Windows.Forms.Timer {
 
     private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
         Stop();
-				showpopup();
+				showtimesup();
     }
 
-		private Popup pop;
-    public void showpopup() {
-		    pop = new Popup(text);
+		private TimerPopup pop;
+    public void showtimesup() {
+		    pop = new TimerPopup(text);
+        pop.BackColor = System.Drawing.Color.Red;
 		    pop.Show();
     }
 }
