@@ -7,6 +7,8 @@ using TimerNS;
 public class TimesUp : Form
 {
     private Button button; 
+    private Button deleteButton; 
+		ContextMenu mnu;
     private bool started=false;
     private StatusBarPanel statusbar;
 	  //static TimerObj myTimer = new TimerObj();
@@ -15,6 +17,7 @@ public class TimesUp : Form
     private TextBox textMsg;
 	  private	TreeView timerTree;
     List<TimerObj> timerList = new List<TimerObj>();
+		private int currentIndex=-1;
 
     public TimesUp ()
     {
@@ -36,10 +39,18 @@ public class TimesUp : Form
         button = new Button();
         button.BackColor = System.Drawing.Color.Gray;
         button.Text = "Start Timer";
-        button.Location = new Point(x+10, y);
+        button.Location = new Point(x-25, y);
         button.Click += new EventHandler(OnClick);
         button.Size = new Size(75,25);
         button.Parent = this;
+
+        deleteButton = new Button();
+        deleteButton.BackColor = System.Drawing.Color.Gray;
+        deleteButton.Text = "Delete";
+        deleteButton.Location = new Point(x+55, y);
+        deleteButton.Click += new EventHandler(DeleteClicked);
+        deleteButton.Size = new Size(75,25);
+        deleteButton.Parent = this;
 
         dtp.Format = DateTimePickerFormat.Time;
         dtp.Size = new Size(500,100);
@@ -54,7 +65,7 @@ public class TimesUp : Form
         timerTree.Click += new EventHandler(TreeClicked);
 				timerTree.Parent = this;
 
-				ContextMenu mnu = new ContextMenu();
+				mnu = new ContextMenu();
 				MenuItem mnuDelete = new MenuItem("Delete");
 				timerTree.ContextMenu = mnu;
 
@@ -78,22 +89,29 @@ public class TimesUp : Form
 
     void TreeClicked(object sender, EventArgs e) {
 				Console.WriteLine( " tree clicked");
+				TreeNode node = timerTree.SelectedNode;
+				currentIndex=node.Index;
+  			Console.WriteLine( currentIndex );
+    }
+
+    void DeleteClicked(object sender, EventArgs e) {
+				Console.WriteLine( " delete clicked");
+  			Console.WriteLine( currentIndex );
+				if ( -1 == currentIndex ) return;
+
+				timerTree.Nodes[currentIndex].Remove();
+				timerList[currentIndex].Stop();
+				timerList.RemoveAt(currentIndex);
     }
 
     void OnClick(object sender, EventArgs e) {
-/*
-        if (started){
-            resetTimer(); 
-            return;
-        }
-*/
 
 				DateTime chosenTime=dtp.Value;
 				TimeSpan setTime=chosenTime.Subtract(DateTime.Now);
-				//Console.WriteLine( "date: " + myTimer.Interval.ToString() );
         if (setTime.TotalSeconds < 1){
             statusbar.Text = "Time Must be in Future";
             return;
+
         }
 
 				timerTree.Nodes.Add(textMsg.Text);
@@ -127,3 +145,4 @@ public class TimesUp : Form
     }
 
 } // END public class TimesUp : Form
+// Sun Mar 30 15:37:50 PDT 2014
