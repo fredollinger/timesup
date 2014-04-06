@@ -12,7 +12,12 @@ public class Poptest : Form{
 				this.Hide();
 				myTimer.setText(text);
 				myTimer.showtimesup();
+				myTimer.TimerDeleted += new TimerObj.ChangedEventHandler(OnTimerDeleted);
     }
+
+   void OnTimerDeleted(object sender, EventArgs e) {
+            Console.WriteLine("timer deleted");
+   }
 
     static public void Main ()
     {

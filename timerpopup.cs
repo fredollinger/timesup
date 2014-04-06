@@ -5,8 +5,8 @@ using System.Windows.Forms;
 
 namespace TimerNS{
 public class TimerPopup : Form {
-    private Button buttonDelete; 
-    private Button buttonExtend; 
+    public Button buttonDelete; 
+    public Button buttonExtend; 
 		private Label label;
 
     public TimerPopup(String str){

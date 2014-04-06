@@ -105,7 +105,12 @@ public class TimesUp : Form
         //}
     }
 
-    void OnClick(object sender, EventArgs e) {
+   void OnTimerDeleted(object sender, EventArgs e) {
+				Console.WriteLine("TODO: find and delete appropriate node on tree");
+				// timerTree.Nodes[currentIndex].Remove();
+   }
+
+   void OnClick(object sender, EventArgs e) {
 
         DateTime chosenTime=dtp.Value;
         TimeSpan setTime=chosenTime.Subtract(DateTime.Now);
@@ -122,6 +127,7 @@ public class TimesUp : Form
         button.Text = "Stop";
 
 	      TimerObj myTimer = new TimerObj();
+				myTimer.TimerDeleted += new TimerObj.ChangedEventHandler(OnTimerDeleted);
 
         /* Adds the event and the event handler for the method that will 
 	  	  *           process the timer event to the timer. */
@@ -131,9 +137,6 @@ public class TimesUp : Form
 				myTimer.setText(textMsg.Text);
 				timerList.Add(myTimer);
 		    myTimer.Start();
-
-        // FRED: NEED TO MOVE THIS TO ARRAY
-        //TimerObj timerobj=new TimerObj();
     }
 
     private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
