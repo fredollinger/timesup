@@ -8,10 +8,10 @@ public class TimesUp : Form
 {
     private Button button; 
     private Button deleteButton; 
-		ContextMenu mnu;
+		//ContextMenu mnu;
     private StatusBarPanel statusbar;
     private DateTimePicker dtp = new DateTimePicker();
-    private Label timeLeftLabel;
+    //private Label timeLeftLabel;
     private TextBox textMsg;
     private	TreeView timerTree;
     List<TimerObj> timerList = new List<TimerObj>();
@@ -88,17 +88,19 @@ public class TimesUp : Form
   			//Console.WriteLine( currentIndex );
     }
 
+    void DeleteTimer(int index) {
+				timerList[index].Stop();
+				timerList.RemoveAt(index);
+				timerTree.Nodes[index].Remove();
+    }
+
     void DeleteClicked(object sender, EventArgs e) {
 				Console.WriteLine( " delete clicked");
   			Console.WriteLine( currentIndex );
 				if ( -1 == currentIndex ) return;
 
-				timerList[currentIndex].Stop();
-				timerList.RemoveAt(currentIndex);
-				timerTree.Nodes[currentIndex].Remove();
-        //Console.WriteLine(" tree clicked");
-        //Point pt = new System.Drawing.Point(20, 20);
-        //mnu.Show(timerTree, pt);
+				DeleteTimer(currentIndex);
+
     } // END DeleteClicked()
 
    void OnTimerDeleted(object sender, EventArgs e) {
