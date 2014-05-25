@@ -20,20 +20,20 @@ public class TimesUp : Form
 
     public TimesUp ()
     {
-		int x=90;
-		int y=50;
+		    int x=90;
+		    int y=50;
 
         Text = "Times Up! Timer Application";
 
         this.BackColor = System.Drawing.Color.Blue;
         this.Padding = new System.Windows.Forms.Padding(20);
 
-		textMsg = new TextBox();
+		    textMsg = new TextBox();
         //textMsg.Location = new Point(20, 60);
         textMsg.Location = new Point(x, y);
-		textMsg.Text = "Enter text here";
+		    textMsg.Text = "Enter text here";
         textMsg.Parent = this;
-		y=y+35;
+		    y=y+35;
 
         button = new Button();
         button.BackColor = System.Drawing.Color.Gray;
@@ -53,7 +53,6 @@ public class TimesUp : Form
 
         dtp.Format = DateTimePickerFormat.Time;
         dtp.Size = new Size(500,100);
-        //textMsg.Location = new Point(x, y);
         dtp.Dock = DockStyle.Fill;
         dtp.Parent = this;
    		  y=y+30;
@@ -119,13 +118,15 @@ public class TimesUp : Form
 
         }
 
-				timerTree.Nodes.Add(textMsg.Text);
-
         statusbar.Text = "Timer started.";
         button.Text = "Stop";
 
 	      TimerObj myTimer = new TimerObj();
 				myTimer.TimerDeleted += new TimerObj.ChangedEventHandler(OnTimerDeleted);
+
+				TreeNode node = new TreeNode(textMsg.Text);
+				node.Name = myTimer.ObjectId.ToString();
+				timerTree.Nodes.Add(node);
 
         /* Adds the event and the event handler for the method that will 
 	  	  *           process the timer event to the timer. */
@@ -147,4 +148,4 @@ public class TimesUp : Form
     }
 
 } // END public class TimesUp : Form
-// Sat Apr  5 14:38:09 PDT 2014
+// Sat May 24 17:29:07 PDT 2014

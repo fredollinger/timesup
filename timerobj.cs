@@ -11,7 +11,7 @@ public delegate void ChangedEventHandler(object sender, EventArgs e);
 public event ChangedEventHandler TimerDeleted;
 private int _objectID;
 
-    public int ObjectID {
+    public int ObjectId {
 	      get { return _objectID; }
 	  }
 
