@@ -93,17 +93,13 @@ public class TimesUp : Form
   			Console.WriteLine( currentIndex );
 				if ( -1 == currentIndex ) return;
 
-				timerTree.Nodes[currentIndex].Remove();
 				timerList[currentIndex].Stop();
 				timerList.RemoveAt(currentIndex);
-        // mnu.Show(timerTree, new System.Drawing.Point(20, 20));
-        //if (e.Button == MouseButtons.Right) {
-            Console.WriteLine(" tree clicked");
-            Point pt = new System.Drawing.Point(20, 20);
-            //Point pt = timerTree.PointToScreen(e.Location);
-            mnu.Show(timerTree, pt);
-        //}
-    }
+				timerTree.Nodes[currentIndex].Remove();
+        //Console.WriteLine(" tree clicked");
+        //Point pt = new System.Drawing.Point(20, 20);
+        //mnu.Show(timerTree, pt);
+    } // END DeleteClicked()
 
    void OnTimerDeleted(object sender, EventArgs e) {
 				Console.WriteLine("TODO: find and delete appropriate node on tree");
