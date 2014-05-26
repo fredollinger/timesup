@@ -6,9 +6,9 @@ using TimerNS;
 
 public class TimesUp : Form
 {
-    private Button button; 
-    private Button deleteButton; 
-		//ContextMenu mnu;
+	  private Button button;
+	  private Button deleteButton;
+
     private StatusBarPanel statusbar;
     private DateTimePicker dtp = new DateTimePicker();
     //private Label timeLeftLabel;
@@ -93,8 +93,24 @@ public class TimesUp : Form
 				timerTree.Nodes[index].Remove();
     }
 
+		/* Given a string, the name, which is == to ObjectId,
+		 * find the actual int node on tree view which matches it */
+    int FindIndexByName(String s) {
+				Console.WriteLine( "FindIndexByName: " + s);
+				int i=0;
+				foreach (TreeNode tn in timerTree.Nodes) {
+				    Console.WriteLine(tn.Name);
+						if (tn.Name == s) return i;
+						i++;
+        }
+				return -1;
+    } // END FindIndexByName()
+
     void DeleteTimer(String s) {
-				Console.WriteLine( "DeleteTimer: " + s);
+				int i;
+				i=FindIndexByName(s);
+				Console.WriteLine( "DeleteTimer: " + i);
+				DeleteTimer(i);
     }
 
     void DeleteClicked(object sender, EventArgs e) {
@@ -110,8 +126,6 @@ public class TimesUp : Form
 				Console.WriteLine("TODO: find and delete appropriate node on tree");
 				TimerObj timerobj = sender as TimerObj;
 				DeleteTimer(timerobj.ObjectId.ToString());
-				//DeleteTimer(timerobj.ObjectId);
-				// timerTree.Nodes[currentIndex].Remove();
    }
 
    void OnClick(object sender, EventArgs e) {
