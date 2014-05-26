@@ -19,6 +19,7 @@ private int _objectID;
 		    Tick += new EventHandler(TimerEventProcessor);
 				idCount++;
         _objectID = idCount;
+				Console.WriteLine( "id: " + _objectID );
 		}
 
 		protected virtual void OnTimerDeleted(EventArgs e){

@@ -93,6 +93,10 @@ public class TimesUp : Form
 				timerTree.Nodes[index].Remove();
     }
 
+    void DeleteTimer(String s) {
+				Console.WriteLine( "DeleteTimer: " + s);
+    }
+
     void DeleteClicked(object sender, EventArgs e) {
 				Console.WriteLine( " delete clicked");
   			Console.WriteLine( currentIndex );
@@ -104,6 +108,9 @@ public class TimesUp : Form
 
    void OnTimerDeleted(object sender, EventArgs e) {
 				Console.WriteLine("TODO: find and delete appropriate node on tree");
+				TimerObj timerobj = sender as TimerObj;
+				DeleteTimer(timerobj.ObjectId.ToString());
+				//DeleteTimer(timerobj.ObjectId);
 				// timerTree.Nodes[currentIndex].Remove();
    }
 
