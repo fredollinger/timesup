@@ -16,7 +16,6 @@ public class TimesUp : Form
     private	TreeView timerTree;
     List<TimerObj> timerList = new List<TimerObj>();
 		private int currentIndex=-1;
-    //private ContextMenu mnu;
 
     public TimesUp ()
     {
