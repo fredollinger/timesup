@@ -10,8 +10,13 @@ public class TimerPopup : Form {
     private Label label;
     private DateTimePicker dtp = new DateTimePicker();
 
+    public System.DateTime ChosenTime {
+            get { return dtp.Value; }
+    }
+
     public TimerPopup(String str){
-        this.CenterToScreen();
+
+	this.CenterToScreen();
 
         Text = str;
 
@@ -29,6 +34,8 @@ public class TimerPopup : Form {
 
         dtp.Format = DateTimePickerFormat.Time;
 	dtp.Location = new Point(30, 90);
+	DateTime addTime = DateTime.Now.Add(new TimeSpan(0,5,0)); 
+	dtp.Value = addTime;
         dtp.Parent = this;
 
  	buttonExtend = new Button();

@@ -40,7 +40,6 @@ class TimesUp : Form {
 		this.Padding = new System.Windows.Forms.Padding(20);
 
 		textMsg = new TextBox();
-		// textMsg.Location = new Point(20, 60);
 		textMsg.Location = new Point(x, y);
 		textMsg.Text = "Enter text here";
 		textMsg.Parent = this;
@@ -62,13 +61,11 @@ class TimesUp : Form {
 		deleteButton.Size = new Size(75, 25);
 		deleteButton.Parent = this;
 
-
 		dtp.Format = DateTimePickerFormat.Time;
 		dtp.Size = new Size(500, 100);
 		dtp.Dock = DockStyle.Fill;
 		// Create a datetime while adding 5 minutes
-		DateTime timerTime = DateTime.Now.Add(new TimeSpan(0,5,0));
-		dtp.Value = timerTime;
+		dtp.Value = DateTime.Now.Add(new TimeSpan(0,5,0));
 		dtp.Parent = this;
 		y = y + 30;
 
