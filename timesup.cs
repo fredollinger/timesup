@@ -4,168 +4,184 @@ using System.Drawing;
 using System.Windows.Forms;
 using TimerNS;
 
-public class TimesUp : Form
-{
-	  private Button button;
-	  private Button deleteButton;
+public
+class TimesUp : Form {
+       private
+	Button button;
 
-    private StatusBarPanel statusbar;
-    private DateTimePicker dtp = new DateTimePicker();
-    //private Label timeLeftLabel;
-    private TextBox textMsg;
-    private	TreeView timerTree;
-    List<TimerObj> timerList = new List<TimerObj>();
-		private int currentIndex=-1;
+       private
+	Button deleteButton;
 
-    public TimesUp ()
-    {
-		    int x=90;
-		    int y=50;
+       private
+	StatusBarPanel statusbar;
 
-        Text = "Times Up! Timer Application";
+       private
+	DateTimePicker dtp = new DateTimePicker();
+	// private Label timeLeftLabel;
+	
+       private
+	TextBox textMsg;
 
-        this.BackColor = System.Drawing.Color.Blue;
-        this.Padding = new System.Windows.Forms.Padding(20);
+       private
+	TreeView timerTree;
+	List<TimerObj> timerList = new List<TimerObj>();
 
-		    textMsg = new TextBox();
-        //textMsg.Location = new Point(20, 60);
-        textMsg.Location = new Point(x, y);
-		    textMsg.Text = "Enter text here";
-        textMsg.Parent = this;
-		    y=y+35;
+       private
+	int currentIndex = -1;
 
-        button = new Button();
-        button.BackColor = System.Drawing.Color.Gray;
-        button.Text = "Start Timer";
-        button.Location = new Point(x-25, y);
-        button.Click += new EventHandler(OnClick);
-        button.Size = new Size(75,25);
-        button.Parent = this;
+       public
+	TimesUp() {
+		int x = 90;
+		int y = 50;
 
-        deleteButton = new Button();
-        deleteButton.BackColor = System.Drawing.Color.Gray;
-        deleteButton.Text = "Delete";
-        deleteButton.Location = new Point(x+55, y);
-        deleteButton.Click += new EventHandler(DeleteClicked);
-        deleteButton.Size = new Size(75,25);
-        deleteButton.Parent = this;
+		Text = "Times Up! Timer Application";
 
-        dtp.Format = DateTimePickerFormat.Time;
-        dtp.Size = new Size(500,100);
-        dtp.Dock = DockStyle.Fill;
-        dtp.Parent = this;
-   		  y=y+30;
+		this.BackColor = System.Drawing.Color.Blue;
+		this.Padding = new System.Windows.Forms.Padding(20);
 
-		    timerTree = new TreeView();
-        timerTree.Location = new Point(20, y);
-        timerTree.Size = new Size(250,100);
-        timerTree.Click += new EventHandler(TreeClicked);
-		    timerTree.Parent = this;
+		textMsg = new TextBox();
+		// textMsg.Location = new Point(20, 60);
+		textMsg.Location = new Point(x, y);
+		textMsg.Text = "Enter text here";
+		textMsg.Parent = this;
+		y = y + 35;
 
-        StatusBar statusBar1 = new StatusBar();
-        statusbar = new StatusBarPanel();
-        statusBar1.BackColor = System.Drawing.Color.Gray;
-        statusbar.Text = "Ready...";
-        statusBar1.ShowPanels = true;
-        statusBar1.Panels.Add(statusbar);
-        this.Controls.Add(statusBar1);
+		button = new Button();
+		button.BackColor = System.Drawing.Color.Gray;
+		button.Text = "Start Timer";
+		button.Location = new Point(x - 25, y);
+		button.Click += new EventHandler(OnClick);
+		button.Size = new Size(75, 25);
+		button.Parent = this;
 
-        CenterToScreen();
-    }
+		deleteButton = new Button();
+		deleteButton.BackColor = System.Drawing.Color.Gray;
+		deleteButton.Text = "Delete";
+		deleteButton.Location = new Point(x + 55, y);
+		deleteButton.Click += new EventHandler(DeleteClicked);
+		deleteButton.Size = new Size(75, 25);
+		deleteButton.Parent = this;
 
-    void resetTimer() {
-        button.Text = "Start Timer";
-        //myTimer.Stop();
-        return;
-    }
 
-    void TreeClicked(object sender, EventArgs e) {
-				Console.WriteLine( " tree clicked");
-				TreeNode node = timerTree.SelectedNode;
-				currentIndex=node.Index;
-  			//Console.WriteLine( currentIndex );
-    }
+		dtp.Format = DateTimePickerFormat.Time;
+		dtp.Size = new Size(500, 100);
+		dtp.Dock = DockStyle.Fill;
+		// Create a datetime while adding 5 minutes
+		DateTime timerTime = DateTime.Now.Add(new TimeSpan(0,5,0));
+		dtp.Value = timerTime;
+		dtp.Parent = this;
+		y = y + 30;
 
-    void DeleteTimer(int index) {
-				timerList[index].Stop();
-				timerList.RemoveAt(index);
-				timerTree.Nodes[index].Remove();
-    }
+		dtp.Parent = this;
+		y = y + 30;
 
-		/* Given a string, the name, which is == to ObjectId,
-		 * find the actual int node on tree view which matches it */
-    int FindIndexByName(String s) {
-				Console.WriteLine( "FindIndexByName: " + s);
-				int i=0;
-				foreach (TreeNode tn in timerTree.Nodes) {
-				    Console.WriteLine(tn.Name);
-						if (tn.Name == s) return i;
-						i++;
-        }
-				return -1;
-    } // END FindIndexByName()
+		timerTree = new TreeView();
+		timerTree.Location = new Point(20, y);
+		timerTree.Size = new Size(250, 100);
+		timerTree.Click += new EventHandler(TreeClicked);
+		timerTree.Parent = this;
 
-    void DeleteTimer(String s) {
-				int i;
-				i=FindIndexByName(s);
-				Console.WriteLine( "DeleteTimer: " + i);
-				DeleteTimer(i);
-    }
+		StatusBar statusBar1 = new StatusBar();
+		statusbar = new StatusBarPanel();
+		statusBar1.BackColor = System.Drawing.Color.Gray;
+		statusbar.Text = "Ready...";
+		statusBar1.ShowPanels = true;
+		statusBar1.Panels.Add(statusbar);
+		this.Controls.Add(statusBar1);
 
-    void DeleteClicked(object sender, EventArgs e) {
-				Console.WriteLine( " delete clicked");
-  			Console.WriteLine( currentIndex );
-				if ( -1 == currentIndex ) return;
+		CenterToScreen();
+	}
 
-				DeleteTimer(currentIndex);
+	void resetTimer() {
+		button.Text = "Start Timer";
+		return;
+	}
 
-    } // END DeleteClicked()
+	void TreeClicked(object sender, EventArgs e) {
+		Console.WriteLine(" tree clicked");
+		TreeNode node = timerTree.SelectedNode;
+		currentIndex = node.Index;
+	}
 
-   void OnTimerDeleted(object sender, EventArgs e) {
-				Console.WriteLine("TODO: find and delete appropriate node on tree");
-				TimerObj timerobj = sender as TimerObj;
-				DeleteTimer(timerobj.ObjectId.ToString());
-   }
+	void DeleteTimer(int index) {
+		timerList[index].Stop();
+		timerList.RemoveAt(index);
+		timerTree.Nodes[index].Remove();
+	}
 
-   void OnClick(object sender, EventArgs e) {
+	/* Given a string, the name, which is == to ObjectId,
+	 * find the actual int node on tree view which matches it */
+	int FindIndexByName(String s) {
+		Console.WriteLine("FindIndexByName: " + s);
+		int i = 0;
+		foreach(TreeNode tn in timerTree.Nodes) {
+			Console.WriteLine(tn.Name);
+			if (tn.Name == s) return i;
+			i++;
+		}
+		return -1;
+	}  // END FindIndexByName()
 
-        DateTime chosenTime=dtp.Value;
-        TimeSpan setTime=chosenTime.Subtract(DateTime.Now);
+	void DeleteTimer(String s) {
+		int i;
+		i = FindIndexByName(s);
+		Console.WriteLine("DeleteTimer: " + i);
+		DeleteTimer(i);
+	}
 
-        if (setTime.TotalSeconds < 1){
-            statusbar.Text = "Time Must be in Future";
-            return;
+	void DeleteClicked(object sender, EventArgs e) {
+		Console.WriteLine(" delete clicked");
+		Console.WriteLine(currentIndex);
+		if (-1 == currentIndex) return;
 
-        }
+		DeleteTimer(currentIndex);
 
-        statusbar.Text = "Timer started.";
-        button.Text = "Stop";
+	}  // END DeleteClicked()
 
-	      TimerObj myTimer = new TimerObj();
-				myTimer.TimerDeleted += new TimerObj.ChangedEventHandler(OnTimerDeleted);
+	void OnTimerDeleted(object sender, EventArgs e) {
+		Console.WriteLine(
+		    "TODO: find and delete appropriate node on tree");
+		TimerObj timerobj = sender as TimerObj;
+		DeleteTimer(timerobj.ObjectId.ToString());
+	}
 
-				TreeNode node = new TreeNode(textMsg.Text);
-				node.Name = myTimer.ObjectId.ToString();
-				timerTree.Nodes.Add(node);
+	void OnClick(object sender, EventArgs e) {
 
-        /* Adds the event and the event handler for the method that will 
-	  	  *           process the timer event to the timer. */
-		    myTimer.Tick += new EventHandler(TimerEventProcessor);
+		DateTime chosenTime = dtp.Value;
+		TimeSpan setTime = chosenTime.Subtract(DateTime.Now);
 
-		    myTimer.Interval = (int) setTime.TotalSeconds * 1000;
-				myTimer.setText(textMsg.Text);
-				timerList.Add(myTimer);
-		    myTimer.Start();
-    }
+		if (setTime.TotalSeconds < 1) {
+			statusbar.Text = "Time Must be in Future";
+			return;
+		}
 
-    private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
-        resetTimer();
-     }
+		statusbar.Text = "Timer started.";
+		// button.Text = "Stop";
 
-    static public void Main ()
-    {
-        Application.Run (new TimesUp ());
-    }
+		TimerObj myTimer = new TimerObj();
+		myTimer.TimerDeleted +=
+		    new TimerObj.ChangedEventHandler(OnTimerDeleted);
 
-} // END public class TimesUp : Form
-// Sat May 24 17:29:07 PDT 2014
+		TreeNode node = new TreeNode(textMsg.Text);
+		node.Name = myTimer.ObjectId.ToString();
+		timerTree.Nodes.Add(node);
+
+		/* Adds the event and the event handler for the method that will
+			  *           process the timer event to the timer. */
+		myTimer.Tick += new EventHandler(TimerEventProcessor);
+
+		myTimer.Interval = (int)setTime.TotalSeconds * 1000;
+		myTimer.setText(textMsg.Text);
+		timerList.Add(myTimer);
+		myTimer.Start();
+	}
+
+       private
+	void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
+		resetTimer();
+	}
+
+	static public void Main() { Application.Run(new TimesUp()); }
+
+}  // END public class TimesUp : Form
+   // Sat May 24 17:29:07 PDT 2014
