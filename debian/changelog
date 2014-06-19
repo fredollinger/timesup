@@ -2,7 +2,7 @@ timesup (0.0.2-1) unstable; urgency=low
 
   * Red popup when times up.
 
-	* Fixed crash upon having time in the past. Now it's reported in status bar.
+  * Fixed crash upon having time in the past. Now it's reported in status bar.
 
  -- Frederick Ollinger <follinge@gmail.com>  Mon, 17 Mar 2014 10:49:12 -0700
 
