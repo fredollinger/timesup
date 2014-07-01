@@ -159,7 +159,11 @@ class TimesUp : Form {
 		myTimer.TimerDeleted +=
 		    new TimerObj.ChangedEventHandler(OnTimerDeleted);
 
-		TreeNode node = new TreeNode(textMsg.Text);
+        // textMsg = textMsg + " [" + chosenTime.ToString() + "]";
+        String treeString = textMsg.Text + " [" + chosenTime.ToString() + "]";
+
+		// TreeNode node = new TreeNode(textMsg.Text);
+		TreeNode node = new TreeNode(treeString);
 		node.Name = myTimer.ObjectId.ToString();
 		timerTree.Nodes.Add(node);
 
