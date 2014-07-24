@@ -1,37 +1,32 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Timers;
 using System.Windows.Forms;
 using TimerNS;
 
 public
 class TimesUp : Form {
-       private
-	Button button;
+    private Button button;
 
-       private
-	Button deleteButton;
+    private Button deleteButton;
 
-       private
-	StatusBarPanel statusbar;
+    private StatusBarPanel statusbar;
 
-       private
-	DateTimePicker dtp = new DateTimePicker();
+    private DateTimePicker dtp = new DateTimePicker();
 	// private Label timeLeftLabel;
-	private Label currentTimeLabel;
+	public Label currentTimeLabel;
 	
-       private
-	TextBox textMsg;
+    private TextBox textMsg;
 
-       private
-	TreeView timerTree;
+    private TreeView timerTree;
 	List<TimerObj> timerList = new List<TimerObj>();
 
-       private
-	int currentIndex = -1;
+    private int currentIndex = -1;
+ 
+    private static System.Timers.Timer TickTimer;
 
-       public
-	TimesUp() {
+    public TimesUp() {
 		int x = 90;
 		int y = 50;
 
@@ -55,8 +50,7 @@ class TimesUp : Form {
 		button.Parent = this;
 
 		currentTimeLabel = new Label();
-		currentTimeLabel.Location = new Point(x, y + 35);
-		currentTimeLabel.Text = DateTime.Now.ToString();
+		currentTimeLabel.Location = new Point(x + 15, y + 35);
 		currentTimeLabel.ForeColor = System.Drawing.Color.White;
 		currentTimeLabel.Parent = this;
 
@@ -93,10 +87,20 @@ class TimesUp : Form {
 		statusBar1.Panels.Add(statusbar);
 		this.Controls.Add(statusBar1);
 
+        TickTimer = new System.Timers.Timer(2000);
+        TickTimer.Elapsed += TickClock;
+        TickTimer.Enabled = true;
+
 		CenterToScreen();
+
+        TickClock(this, null);
 	}
 
-	void resetTimer() {
+    void TickClock(Object source, ElapsedEventArgs e) {
+	    currentTimeLabel.Text = DateTime.Now.ToLongTimeString();
+    }
+
+    void resetTimer() {
 		button.Text = "Start Timer";
 		return;
 	}

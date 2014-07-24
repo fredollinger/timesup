@@ -17,9 +17,9 @@ public class TimerObj : System.Windows.Forms.Timer {
 
     public TimerObj(){
         Tick += new EventHandler(TimerEventProcessor);
-	idCount++;
+	    idCount++;
         _objectID = idCount;
-	Console.WriteLine( "id: " + _objectID );
+	    Console.WriteLine( "id: " + _objectID );
     } // END TimerObj()
 
     protected virtual void OnTimerDeleted(EventArgs e){
@@ -27,7 +27,7 @@ public class TimerObj : System.Windows.Forms.Timer {
     }
 
     public void setText(String str){
-            text=str; 
+        text=str; 
     }
 
     private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
