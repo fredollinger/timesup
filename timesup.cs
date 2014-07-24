@@ -18,6 +18,7 @@ class TimesUp : Form {
        private
 	DateTimePicker dtp = new DateTimePicker();
 	// private Label timeLeftLabel;
+	private Label currentTimeLabel;
 	
        private
 	TextBox textMsg;
@@ -52,6 +53,12 @@ class TimesUp : Form {
 		button.Click += new EventHandler(OnClick);
 		button.Size = new Size(75, 25);
 		button.Parent = this;
+
+		currentTimeLabel = new Label();
+		currentTimeLabel.Location = new Point(x, y + 35);
+		currentTimeLabel.Text = DateTime.Now.ToString();
+		currentTimeLabel.ForeColor = System.Drawing.Color.White;
+		currentTimeLabel.Parent = this;
 
 		deleteButton = new Button();
 		deleteButton.BackColor = System.Drawing.Color.Gray;

@@ -1,3 +1,9 @@
+timesup (0.0.3-1) unstable; urgency=low
+
+  * Add a ticking clock.
+
+ -- Frederick Ollinger <follinge@gmail.com>  Thu, 24 Jul 2014 09:05:22 -0700
+
 timesup (0.0.2-1) unstable; urgency=low
 
   * Red popup when times up.
