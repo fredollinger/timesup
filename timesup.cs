@@ -87,7 +87,7 @@ class TimesUp : Form {
 		statusBar1.Panels.Add(statusbar);
 		this.Controls.Add(statusBar1);
 
-        TickTimer = new System.Timers.Timer(2000);
+        TickTimer = new System.Timers.Timer(1000);
         TickTimer.Elapsed += TickClock;
         TickTimer.Enabled = true;
 
