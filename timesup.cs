@@ -106,7 +106,7 @@ class TimesUp : Form {
 	}
 
 	void TreeClicked(object sender, EventArgs e) {
-		Console.WriteLine(" tree clicked");
+		// Console.WriteLine(" tree clicked");
 		TreeNode node = timerTree.SelectedNode;
 		currentIndex = node.Index;
 	}
@@ -120,10 +120,10 @@ class TimesUp : Form {
 	/* Given a string, the name, which is == to ObjectId,
 	 * find the actual int node on tree view which matches it */
 	int FindIndexByName(String s) {
-		Console.WriteLine("FindIndexByName: " + s);
+		// Console.WriteLine("FindIndexByName: " + s);
 		int i = 0;
 		foreach(TreeNode tn in timerTree.Nodes) {
-			Console.WriteLine(tn.Name);
+			// Console.WriteLine(tn.Name);
 			if (tn.Name == s) return i;
 			i++;
 		}
@@ -133,13 +133,13 @@ class TimesUp : Form {
 	void DeleteTimer(String s) {
 		int i;
 		i = FindIndexByName(s);
-		Console.WriteLine("DeleteTimer: " + i);
+		//Console.WriteLine("DeleteTimer: " + i);
 		DeleteTimer(i);
 	}
 
 	void DeleteClicked(object sender, EventArgs e) {
-		Console.WriteLine(" delete clicked");
-		Console.WriteLine(currentIndex);
+		// Console.WriteLine(" delete clicked");
+		// Console.WriteLine(currentIndex);
 		if (-1 == currentIndex) return;
 
 		DeleteTimer(currentIndex);
@@ -147,8 +147,8 @@ class TimesUp : Form {
 	}  // END DeleteClicked()
 
 	void OnTimerDeleted(object sender, EventArgs e) {
-		Console.WriteLine(
-		    "TODO: find and delete appropriate node on tree");
+		//Console.WriteLine(
+		//   "TODO: find and delete appropriate node on tree");
 		TimerObj timerobj = sender as TimerObj;
 		DeleteTimer(timerobj.ObjectId.ToString());
 	}

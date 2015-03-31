@@ -1,7 +1,9 @@
 APP=timesup
 
+FLAGS = -pkg:appindicator-sharp-0.1 -pkg:dotnet
+
 win: clean
-	gmcs -pkg:dotnet timesup.cs timerobj.cs timerpopup.cs
+	gmcs $(FLAGS) timesup.cs timerobj.cs timerpopup.cs indicator.cs
 
 install:
 	mkdir -p $(DESTDIR)/usr/bin

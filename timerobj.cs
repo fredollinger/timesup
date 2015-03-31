@@ -19,7 +19,7 @@ public class TimerObj : System.Windows.Forms.Timer {
         Tick += new EventHandler(TimerEventProcessor);
 	    idCount++;
         _objectID = idCount;
-	    Console.WriteLine( "id: " + _objectID );
+	    //Console.WriteLine( "id: " + _objectID );
     } // END TimerObj()
 
     protected virtual void OnTimerDeleted(EventArgs e){
@@ -45,7 +45,7 @@ public class TimerObj : System.Windows.Forms.Timer {
     }
 
     void HandleDelete(object sender, EventArgs e) {
-	    Console.WriteLine("Delete clicked");
+	    // Console.WriteLine("Delete clicked");
 	    // todo need to send out which object is deleted, I think
 	    OnTimerDeleted(EventArgs.Empty);  // shoot out a signal telling that
 					      // we are deleted
@@ -53,7 +53,7 @@ public class TimerObj : System.Windows.Forms.Timer {
     } 
 
     void HandleExtend(object sender, EventArgs e) {
-	    Console.WriteLine("Extend clicked");
+	    // Console.WriteLine("Extend clicked");
 	    TimeSpan setTime = pop.ChosenTime.Subtract(DateTime.Now);
 	    if (setTime.TotalSeconds < 1) {
                 //statusbar.Text = "Time Must be in Future";
