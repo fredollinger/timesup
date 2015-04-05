@@ -20,6 +20,7 @@ private String ExecutableFolder {
 } // END ExecutableFolder 
 
 public void BuildMenu() {
+/*
     ApplicationIndicator indicator = new ApplicationIndicator (
         "sample-application", 		//id of the the indicator icon
 	"app-icon",			        //file name of the icon (will look for app-icon.png) 
@@ -37,6 +38,7 @@ public void BuildMenu() {
         popupMenu.Append(menuItemShow);
     
         popupMenu.Append(new SeparatorMenuItem());
+*/
     
 /*
         //Quit menu item
@@ -44,9 +46,9 @@ public void BuildMenu() {
         menuItemQuit.Image = new Gtk.Image (Stock.Quit, IconSize.Menu);
         menuItemQuit.Activated += (sender, e) => Application.Quit ();
         popupMenu.Append (menuItemQuit);
-*/
     	
         popupMenu.ShowAll();
+*/
         //Assign menu and make indicator active
 //        indicator.Menu = popupMenu;
 //        indicator.Status = AppIndicator.Status.Active;	
