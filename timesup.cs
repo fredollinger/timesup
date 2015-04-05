@@ -8,29 +8,27 @@ using TimerNS;
 public
 class TimesUp : Form {
     private Button button;
-
     private Button deleteButton;
-
     private StatusBarPanel statusbar;
-
     private DateTimePicker dtp = new DateTimePicker();
-	// private Label timeLeftLabel;
-	public Label currentTimeLabel;
-	
+    // private Label timeLeftLabel;
+    public Label currentTimeLabel;
     private TextBox textMsg;
-
     private TreeView timerTree;
-	List<TimerObj> timerList = new List<TimerObj>();
+    List<TimerObj> timerList = new List<TimerObj>();
 
     private int currentIndex = -1;
- 
     private static System.Timers.Timer TickTimer;
+
+    private TimesIndicator appIndicator = new TimesIndicator();
 
     public TimesUp() {
 		int x = 90;
 		int y = 50;
 
 		Text = "Times Up! Timer Application";
+
+                appIndicator.BuildMenu(); 
 
 		this.BackColor = System.Drawing.Color.Blue;
 		this.Padding = new System.Windows.Forms.Padding(20);
