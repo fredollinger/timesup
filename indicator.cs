@@ -10,8 +10,9 @@ using Gdk;
 namespace TimerNS{
 public partial class TimesIndicator {
 
-    ApplicationIndicator indicator;
+    private ApplicationIndicator indicator;
 
+// BEGIN APP INDICATOR
     private String _ExecutableFolder = "";
     private String ExecutableFolder {
         get {
@@ -23,12 +24,12 @@ public partial class TimesIndicator {
 
     public void BuildMenu() {
         //indicator = new ApplicationIndicator ("my-id", "my-name", Category.ApplicationStatus);
-    ApplicationIndicator indicator = new ApplicationIndicator (
-        "sample-application", 		//id of the the indicator icon
-	"app-icon",			        //file name of the icon (will look for app-icon.png) 
-	Category.ApplicationStatus, 
-	ExecutableFolder            //the folder where to look for app-icon.png
-    );	// END ApplicationIndicator
+        indicator = new ApplicationIndicator (
+            "sample-application", 		//id of the the indicator icon
+	    "app-icon.png",			        //file name of the icon (will look for app-icon.png) 
+	    Category.ApplicationStatus, 
+	    ExecutableFolder            //the folder where to look for app-icon.png
+        );	// END ApplicationIndicator
 	
         //Build Popup Menu for ApplicationIndicator
         Menu popupMenu = new Menu ();
@@ -36,7 +37,7 @@ public partial class TimesIndicator {
         //Show menu item
         ImageMenuItem menuItemShow = new ImageMenuItem ("Show");
         menuItemShow.Image = new Gtk.Image(Stock.Info, IconSize.Menu);
-//        menuItemShow.Activated += (sender, e) => this.Visible = !this.Visible;
+        // menuItemShow.Activated += (sender, e) => this.Visible = !this.Visible;
         popupMenu.Append(menuItemShow);
     
         popupMenu.Append(new SeparatorMenuItem());

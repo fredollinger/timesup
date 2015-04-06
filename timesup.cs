@@ -1,26 +1,39 @@
+using AppIndicator;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Timers;
 using System.Windows.Forms;
 using TimerNS;
+using Gtk;
 
 public
 class TimesUp : Form {
-    private Button button;
-    private Button deleteButton;
+    private System.Windows.Forms.Button button;
+    private System.Windows.Forms.Button deleteButton;
     private StatusBarPanel statusbar;
     private DateTimePicker dtp = new DateTimePicker();
-    // private Label timeLeftLabel;
-    public Label currentTimeLabel;
+    public System.Windows.Forms.Label currentTimeLabel;
     private TextBox textMsg;
-    private TreeView timerTree;
+    private System.Windows.Forms.TreeView timerTree;
+    // private TreeView timerTree;
     List<TimerObj> timerList = new List<TimerObj>();
 
     private int currentIndex = -1;
     private static System.Timers.Timer TickTimer;
 
     private TimesIndicator appIndicator = new TimesIndicator();
+    private ApplicationIndicator indicator;
+
+// BEGIN APP INDICATOR
+    private String _ExecutableFolder = "";
+    private String ExecutableFolder {
+        get {
+            if (_ExecutableFolder == "")
+                _ExecutableFolder = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+            return _ExecutableFolder;
+        }
+    } // END ExecutableFolder 
 
     public TimesUp() {
 		int x = 90;
@@ -28,7 +41,24 @@ class TimesUp : Form {
 
 		Text = "Times Up! Timer Application";
 
-                appIndicator.BuildMenu(); 
+                // appIndicator.BuildMenu(); 
+indicator = new ApplicationIndicator (
+            "sample-application", 		//id of the the indicator icon
+	    "app-icon.png",			        //file name of the icon (will look for app-icon.png) 
+	    Category.ApplicationStatus, 
+	    ExecutableFolder            //the folder where to look for app-icon.png
+        );	// END ApplicationIndicator
+
+    Gtk.Menu menu = new Gtk.Menu ();
+Gtk.MenuItem testMenuItem = new Gtk.ImageMenuItem (Gtk.Stock.About, null);
+menu.Add (testMenuItem);
+menu.ShowAll ();
+indicator.Menu = menu;
+
+    indicator.Status = Status.Active;
+	
+
+
 
 		this.BackColor = System.Drawing.Color.Blue;
 		this.Padding = new System.Windows.Forms.Padding(20);
@@ -39,7 +69,7 @@ class TimesUp : Form {
 		textMsg.Parent = this;
 		y = y + 35;
 
-		button = new Button();
+		button = new System.Windows.Forms.Button();
 		button.BackColor = System.Drawing.Color.Gray;
 		button.Text = "Start Timer";
 		button.Location = new Point(x - 25, y);
@@ -47,12 +77,12 @@ class TimesUp : Form {
 		button.Size = new Size(75, 25);
 		button.Parent = this;
 
-		currentTimeLabel = new Label();
+		currentTimeLabel = new System.Windows.Forms.Label();
 		currentTimeLabel.Location = new Point(x + 15, y + 35);
 		currentTimeLabel.ForeColor = System.Drawing.Color.White;
 		currentTimeLabel.Parent = this;
 
-		deleteButton = new Button();
+		deleteButton = new System.Windows.Forms.Button();
 		deleteButton.BackColor = System.Drawing.Color.Gray;
 		deleteButton.Text = "Delete";
 		deleteButton.Location = new Point(x + 55, y);
@@ -71,7 +101,7 @@ class TimesUp : Form {
 		dtp.Parent = this;
 		y = y + 30;
 
-		timerTree = new TreeView();
+		timerTree = new System.Windows.Forms.TreeView();
 		timerTree.Location = new Point(20, y);
 		timerTree.Size = new Size(250, 100);
 		timerTree.Click += new EventHandler(TreeClicked);
@@ -94,7 +124,7 @@ class TimesUp : Form {
         TickClock(this, null);
 	}
 
-    void TickClock(Object source, ElapsedEventArgs e) {
+    void TickClock(object source, ElapsedEventArgs e) {
 	    currentTimeLabel.Text = DateTime.Now.ToLongTimeString();
     }
 
@@ -105,7 +135,7 @@ class TimesUp : Form {
 
 	void TreeClicked(object sender, EventArgs e) {
 		// Console.WriteLine(" tree clicked");
-		TreeNode node = timerTree.SelectedNode;
+                System.Windows.Forms.TreeNode node = timerTree.SelectedNode;
 		currentIndex = node.Index;
 	}
 
@@ -120,7 +150,7 @@ class TimesUp : Form {
 	int FindIndexByName(String s) {
 		// Console.WriteLine("FindIndexByName: " + s);
 		int i = 0;
-		foreach(TreeNode tn in timerTree.Nodes) {
+		foreach(System.Windows.Forms.TreeNode tn in timerTree.Nodes) {
 			// Console.WriteLine(tn.Name);
 			if (tn.Name == s) return i;
 			i++;
@@ -168,11 +198,11 @@ class TimesUp : Form {
 		myTimer.TimerDeleted +=
 		    new TimerObj.ChangedEventHandler(OnTimerDeleted);
 
-        // textMsg = textMsg + " [" + chosenTime.ToString() + "]";
-        String treeString = textMsg.Text + " [" + chosenTime.ToString() + "]";
+               // textMsg = textMsg + " [" + chosenTime.ToString() + "]";
+               String treeString = textMsg.Text + " [" + chosenTime.ToString() + "]";
 
 		// TreeNode node = new TreeNode(textMsg.Text);
-		TreeNode node = new TreeNode(treeString);
+                System.Windows.Forms.TreeNode node = new System.Windows.Forms.TreeNode(treeString);
 		node.Name = myTimer.ObjectId.ToString();
 		timerTree.Nodes.Add(node);
 
@@ -184,14 +214,14 @@ class TimesUp : Form {
 		myTimer.setText(textMsg.Text);
 		timerList.Add(myTimer);
 		myTimer.Start();
-	}
+	} // END OnClick
 
        private
-	void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
+	void TimerEventProcessor(object myObject, EventArgs myEventArgs) {
 		resetTimer();
 	}
 
-	static public void Main() { Application.Run(new TimesUp()); }
+	static public void Main() { System.Windows.Forms.Application.Run(new TimesUp()); }
 
 }  // END public class TimesUp : Form
    // Sat May 24 17:29:07 PDT 2014
