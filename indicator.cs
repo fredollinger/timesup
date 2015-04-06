@@ -9,18 +9,20 @@ using Gdk;
 
 namespace TimerNS{
 public partial class TimesIndicator {
-private String _ExecutableFolder = "";
-private String ExecutableFolder {
-    get {
-        if (_ExecutableFolder == "")
-            _ExecutableFolder = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
-        return _ExecutableFolder;
-    }
 
-} // END ExecutableFolder 
+    ApplicationIndicator indicator;
 
-public void BuildMenu() {
-/*
+    private String _ExecutableFolder = "";
+    private String ExecutableFolder {
+        get {
+            if (_ExecutableFolder == "")
+                _ExecutableFolder = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+            return _ExecutableFolder;
+        }
+    } // END ExecutableFolder 
+
+    public void BuildMenu() {
+        //indicator = new ApplicationIndicator ("my-id", "my-name", Category.ApplicationStatus);
     ApplicationIndicator indicator = new ApplicationIndicator (
         "sample-application", 		//id of the the indicator icon
 	"app-icon",			        //file name of the icon (will look for app-icon.png) 
@@ -38,9 +40,7 @@ public void BuildMenu() {
         popupMenu.Append(menuItemShow);
     
         popupMenu.Append(new SeparatorMenuItem());
-*/
     
-/*
         //Quit menu item
         ImageMenuItem menuItemQuit = new ImageMenuItem ("Quit");
         menuItemQuit.Image = new Gtk.Image (Stock.Quit, IconSize.Menu);
@@ -48,13 +48,12 @@ public void BuildMenu() {
         popupMenu.Append (menuItemQuit);
     	
         popupMenu.ShowAll();
-*/
         //Assign menu and make indicator active
-//        indicator.Menu = popupMenu;
-//        indicator.Status = AppIndicator.Status.Active;	
+        indicator.Menu = popupMenu;
+        indicator.Status = AppIndicator.Status.Active;	
 
-    } // BuildMenu()
+        } // BuildMenu()
 
-} // END TimesIndicator
+    } // END TimesIndicator
 
 } // END namespace TimerNS
