@@ -41,24 +41,7 @@ class TimesUp : Form {
 
 		Text = "Times Up! Timer Application";
 
-                // appIndicator.BuildMenu(); 
-indicator = new ApplicationIndicator (
-            "sample-application", 		//id of the the indicator icon
-	    "app-icon.png",			        //file name of the icon (will look for app-icon.png) 
-	    Category.ApplicationStatus, 
-	    ExecutableFolder            //the folder where to look for app-icon.png
-        );	// END ApplicationIndicator
-
-    Gtk.Menu menu = new Gtk.Menu ();
-Gtk.MenuItem testMenuItem = new Gtk.ImageMenuItem (Gtk.Stock.About, null);
-menu.Add (testMenuItem);
-menu.ShowAll ();
-indicator.Menu = menu;
-
-    indicator.Status = Status.Active;
-	
-
-
+                BuildMenu();
 
 		this.BackColor = System.Drawing.Color.Blue;
 		this.Padding = new System.Windows.Forms.Padding(20);
@@ -219,6 +202,40 @@ indicator.Menu = menu;
        private
 	void TimerEventProcessor(object myObject, EventArgs myEventArgs) {
 		resetTimer();
+	}
+
+	private void BuildMenu()
+	{
+		ApplicationIndicator indicator = 
+			new ApplicationIndicator (
+				"sample-application", 		//id of the the indicator icon
+				"app-icon",			        //file name of the icon (will look for app-icon.png) 
+				Category.ApplicationStatus, 
+				ExecutableFolder            //the folder where to look for app-icon.png
+				);	
+	
+		//Build Popup Menu for ApplicationIndicator
+		Gtk.Menu popupMenu = new Gtk.Menu ();
+
+		//Show menu item
+		ImageMenuItem menuItemShow = new ImageMenuItem ("Show");
+		menuItemShow.Image = new Gtk.Image(Stock.Info, IconSize.Menu);
+		menuItemShow.Activated += (sender, e) => this.Visible = !this.Visible;
+		popupMenu.Append(menuItemShow);
+
+		popupMenu.Append(new SeparatorMenuItem());
+
+		//Quit menu item
+		ImageMenuItem menuItemQuit = new ImageMenuItem ("Quit");
+		menuItemQuit.Image = new Gtk.Image (Stock.Quit, IconSize.Menu);
+		//menuItemQuit.Activated += (sender, e) => Application.Quit ();
+		popupMenu.Append (menuItemQuit);
+		
+		popupMenu.ShowAll();
+		
+		//Assign menu and make indicator active
+		indicator.Menu = popupMenu;
+		indicator.Status = AppIndicator.Status.Active;	
 	}
 
 	static public void Main() { System.Windows.Forms.Application.Run(new TimesUp()); }
