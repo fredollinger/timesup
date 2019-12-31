@@ -45,4 +45,9 @@ task :orig do
 	cd "#{APP}"
 end
 
-# Sun Oct 27 16:20:25 PDT 2013
+desc "build debian package"
+task :install do
+   sh "sudo cp timesup.exe timesup /usr/bin"
+end
+
+# Mon 30 Dec 2019 03:59:56 PM PST
