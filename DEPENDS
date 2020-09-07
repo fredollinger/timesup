@@ -1,6 +1,6 @@
-mono-gmcs
-libappindicator0.1-cil-dev
-libgtk2.0-cil-dev
-libmono-cil-dev
-libmono-cscompmgd8.0-cil
-libappindicator0.1-cil
+libappindicator0.1-cil-dev 
+libgtk2.0-cil-dev 
+libmono-cil-dev 
+mono-xbuild 
+mono-mcs 
+mono-devel
